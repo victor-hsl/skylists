@@ -8,7 +8,7 @@ import Header from './template/header';
 import GlobalStyle from './styles/global'
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from './util/usePersistedState';
-
+import BackgroundImage from './components/backgroundImage';
 
 function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
@@ -18,6 +18,7 @@ function App() {
   }
   return (
     <ThemeProvider theme={theme}>
+        <BackgroundImage/>
         <GlobalStyle/>
         <Header toggleTheme={toggleTheme}/>
         App
