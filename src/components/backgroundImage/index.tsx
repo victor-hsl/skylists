@@ -1,11 +1,25 @@
 import styled from "styled-components";
 import Clouds from '../../assets/backgrounds/clouds.png'
-import Stars from '../../assets/backgrounds/stars.png'
+import Cloud1 from '../../assets/backgrounds/clouds_1.png'
+import Cloud2 from '../../assets/backgrounds/clouds_2.png'
+import Cloud3 from '../../assets/backgrounds/clouds_3.png'
+import Stars from '../../assets/backgrounds/stars_big.png'
 import { ThemeContext } from 'styled-components';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Container = styled.div`
     @keyframes moveX {
+        0% {
+            transform: translateX(0px);
+        }
+        50% {
+            transform: translateX(30px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+    @keyframes moveP {
         0% {
             transform: translateX(0px);
         }
@@ -20,7 +34,10 @@ const Container = styled.div`
         0% {
             transform: translateY(0px);
         }
-        100% {
+        50% {
+            transform: translateY(150px);
+        }
+        100%{
             transform: translateY(300px);
         }
     }
@@ -35,28 +52,80 @@ const Container = styled.div`
         position: absolute;
         top: -300px;
         width: 100%;
-        animation: moveY 10s infinite linear;
+        animation: moveY 30s infinite linear;
     }
-    .stars:after {
-        top: 0px;
-    }
-    .clouds {
+    .cloud{
 
         height: 100%;
         width: 100%;
         animation: moveX 7s infinite linear;
     }
+
+    .c {
+        height: 95vh;
+    }
+    .i1 {
+        width: 100%;
+        margin-bottom: -40px;
+        animation: moveX 13s infinite linear;
+    }
+    .i2{
+        width: 100%;
+        margin-left: -30px;
+        animation: moveP 13s infinite linear;
+    }
+    .i3{
+        margin-left: 30px;
+        width: 100%;
+        animation: moveX 13s infinite linear;
+    }
+    .i4{
+        margin-top: -20px;
+        width: 100%;
+        animation: moveP 13s infinite linear;
+    }
+    @media (min-width: 576px) {
+        .c {
+            height: 100vh;
+        } 
+        .i1 {
+            width: 50%;
+            margin: 0 0 0 auto;
+        }
+        .i2{
+            width: 60%;
+            margin: 0 auto;
+        }
+        .i3{
+            width: 50%;
+        }
+        .i4{
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+    
+    
 `;
 
 const BackgroundImage = () => {
     const { title } = useContext(ThemeContext);
+    const [coco, setCoco] = useState('c');
     return(
         <Container>
             {title === 'dark' &&
                 <img src={Stars} className="stars"/>
             }
-            {title === 'light' && 
-                <img src={Clouds} className="clouds"/>
+            {title === 'light' && coco === 'c' && 
+                <div className="c d-flex flex-column">
+                    <img src={Cloud1} className="i1"/>
+                    <img src={Cloud2} className="i2 my-auto"/>
+                    <img src={Cloud2} className="i3 my-auto"/>
+                    <img src={Cloud3} className="i4"/>
+                </div>
+            }
+            {title === 'light' && coco === 'b' && 
+                <img src={Clouds} className="cloud"/>
             }
         </Container>
     );

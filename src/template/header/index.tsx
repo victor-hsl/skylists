@@ -13,7 +13,6 @@ type Props = {
 const Header = ({toggleTheme} : Props) => {
     return (
         <Head className="d-flex align-items-center">
-            Header
             <ThemeSwitcher toggleTheme={toggleTheme}/>
         </Head>
     )

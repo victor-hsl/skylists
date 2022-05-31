@@ -21,7 +21,6 @@ function App() {
         <BackgroundImage/>
         <GlobalStyle/>
         <Header toggleTheme={toggleTheme}/>
-        App
     </ThemeProvider>
   );
 }
