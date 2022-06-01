@@ -8,8 +8,7 @@ export default createGlobalStyle`
     }
 
     body {
-        background: linear-gradient(${props => props.theme.background}, ${props => props.theme.gradient});
-        color: ${props => props.theme.primary};
+        background: linear-gradient(${props => props.theme.background}, ${props => props.theme.gradient}) !important;
         height: 100vh;
     }
 `

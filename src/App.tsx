@@ -9,6 +9,8 @@ import GlobalStyle from './styles/global'
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from './util/usePersistedState';
 import BackgroundImage from './components/backgroundImage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Rotas from './Router';
 
 function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
@@ -18,9 +20,12 @@ function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-        <BackgroundImage/>
-        <GlobalStyle/>
-        <Header toggleTheme={toggleTheme}/>
+      <BackgroundImage/>
+      <GlobalStyle/>
+      <Header toggleTheme={toggleTheme}/>
+      <Router>
+        <Rotas/>
+      </Router>
     </ThemeProvider>
   );
 }

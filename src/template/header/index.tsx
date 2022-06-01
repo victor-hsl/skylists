@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ThemeSwitcher from "../../components/themeSwitcher";
 
 const Head = styled.header`
-    height: 50px;
+    height: 5vh;
     padding: 0 30px;
     color: ${props => props.theme.text};
 `;

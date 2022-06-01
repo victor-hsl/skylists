@@ -62,7 +62,7 @@ const Container = styled.div`
     }
 
     .c {
-        height: 95vh;
+        height: 100vh;
     }
     .i1 {
         width: 100%;
@@ -85,6 +85,7 @@ const Container = styled.div`
         animation: moveP 13s infinite linear;
     }
     @media (min-width: 576px) {
+        height: 100vh;
         .c {
             height: 100vh;
         } 
@@ -110,22 +111,19 @@ const Container = styled.div`
 
 const BackgroundImage = () => {
     const { title } = useContext(ThemeContext);
-    const [coco, setCoco] = useState('c');
+    
     return(
         <Container>
             {title === 'dark' &&
                 <img src={Stars} className="stars"/>
             }
-            {title === 'light' && coco === 'c' && 
+            {title === 'light' && 
                 <div className="c d-flex flex-column">
                     <img src={Cloud1} className="i1"/>
                     <img src={Cloud2} className="i2 my-auto"/>
                     <img src={Cloud2} className="i3 my-auto"/>
                     <img src={Cloud3} className="i4"/>
                 </div>
-            }
-            {title === 'light' && coco === 'b' && 
-                <img src={Clouds} className="cloud"/>
             }
         </Container>
     );
