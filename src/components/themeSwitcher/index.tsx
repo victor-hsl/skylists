@@ -10,7 +10,7 @@ const ThemeSwitcher = ({toggleTheme} : Props) => {
     const { title } = useContext(ThemeContext);
 
     return(
-        <Button htmlFor="checkbox" className="ms-auto mt-1">
+        <Button htmlFor="checkbox" className="ms-auto">
             <input type="checkbox" id="checkbox" onChange={toggleTheme} checked={title === 'dark'}/>
             <span className="ball"></span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-brightness-high sun" viewBox="0 0 16 16">

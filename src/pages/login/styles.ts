@@ -70,7 +70,7 @@ export const Submit = styled.button`
     padding: 0rem .75rem;
     border-radius: 0.375rem;
     background: #4503dc;
-    color: ${props => props.theme.text};
+    color: #FFFAFF;
     box-shadow: 0 0.4rem 0 0 #3700b8;
     letter-spacing: 2px;
     transition: all .3s;

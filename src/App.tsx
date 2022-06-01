@@ -11,10 +11,8 @@ import usePersistedState from './util/usePersistedState';
 import BackgroundImage from './components/backgroundImage';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Rotas from './Router';
-
 function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
-
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
   }
