@@ -1,12 +1,13 @@
 import * as C from './styles'
 import CardBlur from '../../components/cardBlur';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 import { auth } from '../../util/FirebaseConnection';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, User } from 'firebase/auth';
 import { useNavigate } from 'react-router';
 import { Alert } from 'react-bootstrap';
 
 const Login = () => {
+    const [user, setUser] = useState<User>();
     const [show, setShow] = useState(0);
     const [inputType, setInputType] = useState('password');
     const [email, setEmail] = useState('');
@@ -18,6 +19,15 @@ const Login = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [showAlert2, setShowAlert2] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if(user){
+                setUser(user);
+                navigate('/home');
+            }
+        })
+    }, []);
 
     const handleInputType = () => {
         if(inputType === 'password'){
@@ -77,6 +87,7 @@ const Login = () => {
                                             <input 
                                                 id="email"
                                                 type="email"
+                                                value={email}
                                                 spellCheck={false} 
                                                 placeholder="E-mail"
                                                 onChange={(e) => setEmail(e.target.value)}
