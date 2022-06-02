@@ -7,5 +7,10 @@ declare module 'styled-components' {
         background: string;
         gradient: string;
         text: string;
+        border: string;
+        backgroundColor: string;
+        secondaryBackground: string;
+        hoverBackground: string;
+        activeBackground: string;
     }
 }

@@ -19,6 +19,6 @@ export const db = getFirestore(firebaseApp);
 
 export const auth = getAuth(firebaseApp);
 
-const createCollection = <T = DocumentData> (collectionName: string) => {
+export const createCollection = <T = DocumentData> (collectionName: string) => {
   return collection(db, collectionName) as CollectionReference<T>
 }

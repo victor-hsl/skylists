@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Clouds from '../../assets/backgrounds/clouds.png'
 import Cloud1 from '../../assets/backgrounds/clouds_1.png'
 import Cloud2 from '../../assets/backgrounds/clouds_2.png'
 import Cloud3 from '../../assets/backgrounds/clouds_3.png'

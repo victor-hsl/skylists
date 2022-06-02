@@ -1,7 +1,8 @@
 import * as C from './styles'
 import CardBlur from '../../components/cardBlur';
 import { FormEvent, useState, useEffect } from 'react';
-import { auth } from '../../util/FirebaseConnection';
+import { auth, db } from '../../util/FirebaseConnection';
+import {addDoc, collection} from 'firebase/firestore';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, User } from 'firebase/auth';
 import { useNavigate } from 'react-router';
 import { Alert } from 'react-bootstrap';
@@ -63,7 +64,22 @@ const Login = () => {
                 setMessage('Senhas não coincidem!');
                 setShowAlert2(true);
             } else {
-                await createUserWithEmailAndPassword(auth, newEmail, pass1).then((userCredential) => {
+                await createUserWithEmailAndPassword(auth, newEmail, pass1).then(async (userCredential) => {
+                    const userRef = collection(db, userCredential.user.uid);
+                    await addDoc(userRef, {
+                        nome: 'Lista vazia',
+                        items: [
+                            {
+                                description: 'teste1',
+                                status: ''
+                            },
+                            {
+                                description: 'teste2',
+                                status: 'done'
+                            }
+                        ],
+                        status: ''
+                    })
                     navigate('/home');
                 }).catch((e) => {
                     alert("Erro! Cod.: "+e.code+" MSG: "+e.message);
