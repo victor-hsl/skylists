@@ -23,42 +23,23 @@ const Home = () => {
         })
     }, []);
 
+    const handleClick = (idList : string) => {
+        
+    }
+
     return(
         <Container className="px-2">
             <CardBlur classe="container mt-2 p-4">
-                    <Nav checked="h"/>
+                    <Nav checked="h" add />
                 <hr/>
                 <Grid>
-                    <GridItem>
-                        <Card icon='I0' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I1' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I2' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I3' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I4' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I5' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I6' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I7' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I8' name='Lista Teste'></Card>
-                    </GridItem>
-                    <GridItem>
-                        <Card icon='I9' name='Lista Teste'></Card>
-                    </GridItem>                    
+                    {
+                        listas.map((item, key) => (
+                            <GridItem key={key}>
+                                <Card icon={item.icone} name={item.nome} id={item.id}/>
+                            </GridItem>
+                        ))
+                    }
                 </Grid>                
             </CardBlur>
         </Container>

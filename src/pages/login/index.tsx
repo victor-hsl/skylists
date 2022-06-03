@@ -70,15 +70,12 @@ const Login = () => {
                         nome: 'Lista vazia',
                         items: [
                             {
-                                description: 'teste1',
+                                description: '',
                                 status: ''
-                            },
-                            {
-                                description: 'teste2',
-                                status: 'done'
                             }
                         ],
-                        status: ''
+                        status: '',
+                        icone: 'I2'
                     })
                     navigate('/home');
                 }).catch((e) => {

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import {Box, NavButton} from './styles';
 import { useNavigate } from 'react-router';
 type Props = {
-    checked: string
+    checked: string,
+    add: boolean
 }
 
-const Nav = ({checked} : Props) => {
+const Nav = ({checked, add} : Props) => {
     const [selected, setSelected] = useState('');
     const navigate = useNavigate();
 
@@ -36,7 +37,12 @@ const Nav = ({checked} : Props) => {
                 <span className="nav-botao">
                     <span className="nav-icone bi bi-clipboard-check"/>
                     <span className="nav-texto">
-                        Add List
+                        {
+                            add === true ? 
+                                <div>Add List</div> 
+                            : 
+                                <div>Your List</div>
+                        }
                     </span>
                 </span>
             </NavButton>

@@ -24,7 +24,7 @@ const Add = () => {
     return(
         <Container className="px-2">
             <CardBlur classe="container mt-2 p-4">
-                    <Nav checked="a"/>
+                    <Nav checked="a" add/>
                 <hr/>
                 <div className="d-flex justify-content-center">
                     Add - 

@@ -9,18 +9,23 @@ import I6 from '../../assets/listIcons/6.png'
 import I7 from '../../assets/listIcons/7.png'
 import I8 from '../../assets/listIcons/8.png'
 import I9 from '../../assets/listIcons/9.png'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router'
 
 type Props = {
     icon: string;
     name: string;
+    id: string;
 }
 
-const ListCard = ({icon, name} : Props) => {
-    useEffect(() => {
-    }, []);
+const ListCard = ({icon, name, id} : Props) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/list/${id}`);
+    }
     return(
-        <C.Card>
+        <C.Card onClick={handleClick}>
             {icon === 'I0' &&
                 <img src={I0} />
             }

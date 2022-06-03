@@ -24,7 +24,7 @@ const Share = () => {
     return(
         <Container className="px-2">
             <CardBlur classe="container mt-2 p-4">
-                    <Nav checked="s"/>
+                    <Nav checked="s" add />
                 <hr/>
                 <div className="d-flex justify-content-center">
                     Share - {user?.email}

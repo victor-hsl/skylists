@@ -1,4 +1,6 @@
 export type Lista = {
+    id: string;
+    icone: string;
     items: [{
         description: string;
         status: string;

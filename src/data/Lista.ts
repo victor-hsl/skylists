@@ -8,6 +8,8 @@ export const getListas = async (uid: string) => {
     const listsDocs = await getDocs(userLists);
     listsDocs.docs.forEach((lista) => {
         list.push({
+            id: lista.id,
+            icone: lista.data().icone,
             items: lista.data().items,
             nome: lista.data().nome,
             status: lista.data().status
