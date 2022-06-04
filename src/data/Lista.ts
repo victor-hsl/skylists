@@ -1,4 +1,4 @@
-import { getDocs, getDoc, doc } from "firebase/firestore";
+import { getDocs, getDoc, doc, updateDoc } from "firebase/firestore";
 import { Lista } from "../types/Lista";
 import { createCollection } from "../util/FirebaseConnection";
 
@@ -18,21 +18,11 @@ export const getListas = async (uid: string) => {
     return list;
 }
 
-export const getList = async (owner: string, list: string) => {
-    const collection = createCollection(owner);
-    const docRef = doc(collection, list);
-    const docSnap = await getDoc(docRef);
-    
-    if(docSnap.exists()){
-        const lista = <Lista>{
-            done: docSnap.data().done,
-            id: docSnap.id,
-            icone: docSnap.data().icone,
-            items: docSnap.data().items,
-            nome: docSnap.data().nome
-        };
-        return lista;
-    } else {
-        return <Lista>{};
+export const updateLista = async (listId: string, userId: string, lista: Lista) => {
+    const userRef = createCollection(userId);
+    const listRef = doc(userRef, listId);
+
+    if(listRef){
+        await updateDoc(listRef, lista);
     }
 }

@@ -1,4 +1,4 @@
-import {Container, Area, Back, ListName} from './styles'
+import {Container, Area, Back, ListName,} from './styles'
 import Nav from '../../template/nav';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router";
@@ -9,6 +9,7 @@ import { Lista } from '../../types/Lista';
 import { createCollection } from '../../util/FirebaseConnection';
 import { doc, getDoc } from 'firebase/firestore';
 import AddItem from '../../components/addItem';
+import { updateLista } from '../../data/Lista';
 import RenderList from '../../components/renderList';
 const List = () => {
     const navigate = useNavigate();
@@ -61,9 +62,23 @@ const List = () => {
         setLista(lst);
     }
 
-    const alertList = () => {
-        console.log(lista);
+    const save = async () => {
+        const userId = owner;
+        const listId = list;
+        const update = lista;
+        if(listId && userId && update){
+            await updateLista(listId, userId, update);
+        }
     }
+
+    const setFinished = () => {
+
+    }
+
+    const share = () => {
+
+    }
+
     const back = () => {
         navigate('/home');
     }
@@ -93,8 +108,14 @@ const List = () => {
                         <AddItem onEnter={handleAddTask}/>
                     </div>
                     <hr/>
-                    <div className="d-flex">
-                        <button className='btn btn-success' onClick={alertList}>Print</button>
+                    <div className="d-flex justify-content-end">
+                        <div className="">
+                            <div className="input-group">
+                                <button className='btn grupo' onClick={save}><i className="bi bi-save me-1"></i>Salvar</button>
+                                <button className='btn grupo' onClick={setFinished}><i className="bi bi-dash-square me-1"></i>Marcar Tudo</button>
+                                <button className='btn grupo' onClick={share}><i className="bi bi-share me-1"></i>Compartilhar</button>
+                            </div>     
+                        </div>                      
                     </div>
                 </Area>              
             </CardBlur>

@@ -9,6 +9,22 @@ export const Area = styled.div`
     background: ${props => props.theme.backgroundColor};
     border: 1px solid ${props => props.theme.border};
     border-radius: 16px;
+
+    .grupo {
+        color: ${props => props.theme.text};
+        background: ${props => props.theme.secondaryBackground};
+        border: 1px solid ${props => props.theme.border};
+    }
+
+    .grupo:active {
+        color: ${props => props.theme.title === 'light' ? '#fff' : '#000'};
+        background: ${props => props.theme.activeBackground};
+    }
+
+    .grupo:focus {
+        color: ${props => props.theme.title === 'light' ? '#fff' : '#000'};
+        background: ${props => props.theme.activeBackground};
+    }
 `;
 
 export const Back = styled.button`
