@@ -35,10 +35,10 @@ const Nav = ({checked, add} : Props) => {
             <NavButton htmlFor="add">
                 <input type="radio" id="add" name="group" value="add" className="nav-inpt" defaultChecked={checked === 'a'} onChange={radioHandler}/>
                 <span className="nav-botao">
-                    <span className="nav-icone bi bi-clipboard-check"/>
+                    <span className={`nav-icone bi ${add?'bi-clipboard-plus':'bi-clipboard-check'}`}/>
                     <span className="nav-texto">
                         {
-                            add === true ? 
+                            add ? 
                                 <div>Add List</div> 
                             : 
                                 <div>Your List</div>

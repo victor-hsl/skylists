@@ -10,52 +10,24 @@ import I7 from '../../assets/listIcons/7.png'
 import I8 from '../../assets/listIcons/8.png'
 import I9 from '../../assets/listIcons/9.png'
 import { useEffect, useState } from 'react';
+import IconRender from '../iconRender'
 import { useNavigate } from 'react-router'
-
 type Props = {
     icon: string;
     name: string;
-    id: string;
+    idList: string;
+    idUser: string | any;
 }
 
-const ListCard = ({icon, name, id} : Props) => {
+const ListCard = ({icon, name, idList, idUser} : Props) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate(`/list/${id}`);
+        navigate(`/list/${idUser}/${idList}`);
     }
     return(
         <C.Card onClick={handleClick}>
-            {icon === 'I0' &&
-                <img src={I0} />
-            }
-            {icon === 'I1' &&
-                <img src={I1} />
-            }
-            {icon === 'I2' &&
-                <img src={I2} />
-            }
-            {icon === 'I3' &&
-                <img src={I3} />
-            }
-            {icon === 'I4' &&
-                <img src={I4} />
-            }
-            {icon === 'I5' &&
-                <img src={I5} />
-            }
-            {icon === 'I6' &&
-                <img src={I6} />
-            }
-            {icon === 'I7' &&
-                <img src={I7} />
-            }
-            {icon === 'I8' &&
-                <img src={I8} />
-            }
-            {icon === 'I9' &&
-                <img src={I9} />
-            }
+            <IconRender icon={icon}/>
             <div className='mt-1'>
                 {name}
             </div>

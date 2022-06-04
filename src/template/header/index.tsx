@@ -11,15 +11,21 @@ const Head = styled.header`
 `;
 
 const Session = styled.button`
-    height: 4vh;
-    width: 4vh;
-    padding: auto;
+    height: 31px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: transparent;
     position: relative;
-    border: 1px solid ${props => props.theme.text};
-    border-radius: 50%;
+    border: 2px solid ${props => props.theme.activeBackground};
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: ${props => props.theme.text};
 
+    i{
+        margin-right: 2px;
+    }
 `;
 
 type Props = {
@@ -46,7 +52,8 @@ const Header = ({toggleTheme} : Props) => {
         <Head className="d-flex align-items-center pt-2">
             {auth.currentUser !== null &&
                 <Session onClick={logout}>
-                    <i className="bi bi-door-open-fill"></i>
+                    <i className="bi bi-door-open"></i>
+                    Sair
                 </Session>
             }
             <ThemeSwitcher toggleTheme={toggleTheme}/>

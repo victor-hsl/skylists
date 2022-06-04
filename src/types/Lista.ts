@@ -1,10 +1,10 @@
 export type Lista = {
+    done: boolean;
     id: string;
     icone: string;
     items: [{
         description: string;
-        status: string;
+        status: boolean;
     }];
     nome: string;
-    status: string;
 }

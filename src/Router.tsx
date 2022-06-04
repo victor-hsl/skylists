@@ -12,7 +12,7 @@ export default function mainRoutes(){
             <Route path='/home' element={<Home/>}/>
             <Route path='/share' element={<Share/>}/>
             <Route path='/add' element={<Add/>}/>
-            <Route path='/list/:id' element={<List/>} />
+            <Route path='/list/:owner/:list' element={<List/>} />
         </Routes>
     )
 }

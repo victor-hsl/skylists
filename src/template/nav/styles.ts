@@ -27,6 +27,7 @@ export const Box = styled.div`
 `;
 
 export const NavButton = styled.label`
+    cursor: pointer;
     .nav-inpt {
         position: absolute;
         transform: scale(0);
