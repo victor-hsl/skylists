@@ -50,7 +50,7 @@ const Home = () => {
                             </GridItem>
                         ))
                     }
-                </Grid>                
+                </Grid>  
             </CardBlur>
         </Container>
     )

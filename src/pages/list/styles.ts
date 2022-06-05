@@ -36,5 +36,10 @@ export const Back = styled.button`
 `;
 
 export const ListName = styled.input`
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: right;
+    color: ${props => props.theme.text};
 
 `

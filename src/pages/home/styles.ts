@@ -67,8 +67,12 @@ export const NavButton = styled.label`
 export const Grid = styled.div`
     width: 100%;
     display: grid;
-    grid-template: auto / auto auto auto;
+    grid-template: auto / auto auto;
     gap: 20px;
+    @media (min-width: 576px){
+        grid-template: auto / auto auto auto;
+    }
+
     @media (min-width: 768px){
         grid-template: auto / auto auto auto auto;
     }

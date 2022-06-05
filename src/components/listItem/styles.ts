@@ -3,11 +3,12 @@ import styled from 'styled-components'
 type ContainerProps = {
     done: boolean,
     secondary: string,
-    text: string
+    text: string,
+    del: string;
 }
 
 
-export const Container = styled.label(({done, secondary, text} : ContainerProps) => (
+export const Container = styled.label(({done, secondary, text, del} : ContainerProps) => (
     `
     display: flex;
     background-color: ${secondary};
@@ -19,13 +20,18 @@ export const Container = styled.label(({done, secondary, text} : ContainerProps)
     input {
         width: 25px;
         height: 25px;
-        margin-right: 5px;
     }
 
     label {
         color: ${text};
         width: 100%;
         text-decoration: ${done ? 'line-through' : 'initial'};
+        font-size: 1.25rem;
+    }
+
+    .botao{
+        background: ${del};
+        color: ${text};
     }
 `
 ))

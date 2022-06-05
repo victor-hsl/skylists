@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Card = styled.button`
     padding: 20px;
     border-radius: 10px;
+    width: 140px;
+    min-height: 185px;
     border: 1px solid ${props => props.theme.border};
     background: ${props => props.theme.backgroundColor};
     display: flex;

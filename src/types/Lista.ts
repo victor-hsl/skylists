@@ -7,4 +7,5 @@ export type Lista = {
         status: boolean;
     }];
     nome: string;
+    privacidade: string;
 }

@@ -3,7 +3,7 @@ import { useState, KeyboardEvent } from 'react'
 const Container = styled.div`
     display: flex;
     border: 1px solid ${props => props.theme.border};
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 10px;
     margin: 20px 0;
     align-items: center;
