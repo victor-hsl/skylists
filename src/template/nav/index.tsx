@@ -7,7 +7,6 @@ type Props = {
 }
 
 const Nav = ({checked, add} : Props) => {
-    const [selected, setSelected] = useState('');
     const navigate = useNavigate();
 
     const radioHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +16,8 @@ const Nav = ({checked, add} : Props) => {
         if(e.target.value === 'add'){
             navigate('/add');
         }
-        if(e.target.value === 'share'){
-            navigate('/share');
+        if(e.target.value === 'profile'){
+            navigate('/profile');
         }
     }
     return(
@@ -46,16 +45,15 @@ const Nav = ({checked, add} : Props) => {
                     </span>
                 </span>
             </NavButton>
-            <NavButton htmlFor="share">
-                <input type="radio" id="share" name="group" value="share" className="nav-inpt" defaultChecked={checked === 's'} onChange={radioHandler}/>
+            <NavButton htmlFor="profile">
+                <input type="radio" id="profile" name="group" value="profile" className="nav-inpt" defaultChecked={checked === 'p'} onChange={radioHandler}/>
                 <span className="nav-botao">
-                    <span className="nav-icone bi bi-share"/>
+                    <span className="nav-icone bi bi-person"/>
                     <span className="nav-texto">
-                        Share
+                        Profile
                     </span>
                 </span>
             </NavButton>
-            {selected}
         </Box>
     )
 }

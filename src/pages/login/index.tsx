@@ -47,9 +47,18 @@ const Login = () => {
             await signInWithEmailAndPassword(auth, email, senha).then((userCredential) => {
                 navigate('/home');
             }).catch((e) => {
-                console.error("Erro! Cod.: "+e.code+" Msg: "+e.message);
-                setMessage('E-mail ou senha incorretos!');
-                setShowAlert(true);
+                if(e.code === 'auth/user-not-found'){
+                    setMessage('Usuário não encontrado! Faça o cadastro clicando na aba abaixo.');
+                    setShowAlert(true);
+                }
+                else if(e. code === 'auth/wrong-password'){
+                    setMessage('E-mail ou senha incorretos!');
+                    setShowAlert(true);
+                }      
+                else if(e. code === 'auth/invalid-email'){
+                    setMessage('Insira um e-mail valido!');
+                    setShowAlert(true);
+                }          
             })
         }
     }
@@ -70,8 +79,8 @@ const Login = () => {
                         nome: 'Lista vazia',
                         items: [
                             {
-                                description: '',
-                                status: ''
+                                description: 'Item',
+                                status: false
                             }
                         ],
                         status: '',
@@ -79,7 +88,18 @@ const Login = () => {
                     })
                     navigate('/home');
                 }).catch((e) => {
-                    alert("Erro! Cod.: "+e.code+" MSG: "+e.message);
+                    if(e.code === 'auth/email-already-in-use'){
+                        setMessage('Email já cadastrado!');
+                        setShowAlert2(true);
+                    }   
+                    if(e.code === 'auth/weak-password'){
+                        setMessage('Sua senha deve conter no minimo 6 caracteres!');
+                        setShowAlert2(true);
+                    }
+                    if(e.code === 'auth/invalid-email'){
+                        setMessage('Insira um e-mail valido!');
+                        setShowAlert2(true);
+                    }
                 })
             }
         }

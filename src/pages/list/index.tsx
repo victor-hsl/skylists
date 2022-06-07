@@ -9,7 +9,7 @@ import { Lista } from '../../types/Lista';
 import { createCollection } from '../../util/FirebaseConnection';
 import { doc, getDoc } from 'firebase/firestore';
 import AddItem from '../../components/addItem';
-import { updateLista } from '../../data/Lista';
+import { updateLista, deleteLista } from '../../data/Lista';
 import RenderList from '../../components/renderList';
 const List = () => {
     const navigate = useNavigate();
@@ -119,8 +119,11 @@ const List = () => {
         }
     }
 
-    const share = () => {
-
+    const excluir = async () => {
+        if(owner && list){
+            await deleteLista(owner, list);
+            navigate('/home');
+        }
     }
     return(
         <Container className="px-2">
@@ -135,7 +138,7 @@ const List = () => {
                         </Back>
                         <div className="d-flex display-6 text-end ms-auto my-auto align-items-center justify-content-end">
                             <ListName
-                                className="display-6"
+                                className="display-6 me-2"
                                 value={nome}
                                 onChange={(e) => {setNome(e.target.value)}}
                             />
@@ -164,7 +167,7 @@ const List = () => {
                                         <label><i className="bi bi-check2-square me-1"></i>Desmarcar Tudo</label>
                                     }                                    
                                 </button>
-                                <button className='btn grupo' onClick={share}><i className="bi bi-trash3 me-1"></i>Excluir</button>
+                                <button className='btn grupo' onClick={excluir}><i className="bi bi-trash3 me-1"></i>Excluir</button>
                             </div>     
                         </div>                      
                     </div>

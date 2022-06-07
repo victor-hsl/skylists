@@ -52,7 +52,7 @@ const Header = ({toggleTheme} : Props) => {
         <Head className="d-flex align-items-center pt-2">
             {auth.currentUser !== null &&
                 <Session onClick={logout}>
-                    <i className="bi bi-door-open"></i>
+                    <i className="bi bi-power"></i>
                     Sair
                 </Session>
             }

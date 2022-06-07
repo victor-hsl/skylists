@@ -10,7 +10,19 @@ import { ThemeProvider, DefaultTheme } from 'styled-components';
 import usePersistedState from './util/usePersistedState';
 import BackgroundImage from './components/backgroundImage';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Rotas from './Router';
+import styled from 'styled-components';
+import Rotas from './Router'
+
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  padding-bottom: 20px;
+  ::-webkit-scrollbar {
+    background: transparent;
+  }
+`;
 function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light);
   const toggleTheme = () => {
@@ -18,12 +30,14 @@ function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <BackgroundImage/>
-      <GlobalStyle/>
-      <Header toggleTheme={toggleTheme}/>
-      <Router>
-        <Rotas/>
-      </Router>
+      <AppContainer>
+        <BackgroundImage/>
+        <GlobalStyle/>
+        <Header toggleTheme={toggleTheme}/>
+        <Router>
+          <Rotas/>
+        </Router>
+      </AppContainer>
     </ThemeProvider>
   );
 }

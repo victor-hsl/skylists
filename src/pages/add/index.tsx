@@ -34,11 +34,11 @@ const Add = () => {
             id: '',
             icone: '',
             items: [{
-                description: '',
+                description: 'Item',
                 status: false
             }],
             nome: '',
-            privacidade: ''
+            privacidade: 'public'
         });
     }
     const setIcon = async (icon: string) => {
@@ -88,7 +88,7 @@ const Add = () => {
 
     return(
         <Container className="px-2">
-            <CardBlur classe="container mt-2 py-4 px-sm-4">
+            <CardBlur classe="container mt-2 py-4 px-2 px-sm-3 px-md-4">
                     <Nav checked="a" add/>
                 <hr/>
                 <div className="d-flex justify-content-center display-6 mb-2">
@@ -157,7 +157,7 @@ const Add = () => {
                     </label>
                     <div className="my-2">
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="public" value="public" onChange={(e) => setPrivacidade(e)}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="public" value="public" onChange={(e) => setPrivacidade(e)} defaultChecked/>
                             <label className="form-check-label" htmlFor="public">Publica <i className="bi bi-unlock"></i></label>
                         </div>
                         <div className="form-check form-check-inline">

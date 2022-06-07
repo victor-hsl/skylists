@@ -1,4 +1,4 @@
-import { getDocs, addDoc, doc, updateDoc } from "firebase/firestore";
+import { getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { Lista } from "../types/Lista";
 import { createCollection } from "../util/FirebaseConnection";
 
@@ -32,5 +32,15 @@ export const addLista = async (userId: string, lista: Lista) => {
     const userRef = createCollection(userId);
     if(lista && userRef){
         await addDoc(userRef, lista);
+    }
+}
+
+export const deleteLista = async (userId: string, listId: string) => {
+    const userRef = createCollection(userId);
+    if(userRef){
+        const listRef = doc(userRef, listId);
+        if(listRef){
+            await deleteDoc(listRef);
+        }
     }
 }
