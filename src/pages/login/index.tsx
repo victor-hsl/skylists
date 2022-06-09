@@ -104,7 +104,7 @@ const Login = () => {
             }
         }
     }
-
+    
     return(
         <div className="pt-5">
                 <CardBlur classe="col-lg-5 col-md-6 col-sm-8 col-10 mx-auto mt-sm-4 mt-5">
@@ -136,7 +136,7 @@ const Login = () => {
                                         <C.Wrapper>
                                             <input
                                                 id="password"
-                                                type="password"
+                                                type={inputType}
                                                 spellCheck={false} 
                                                 placeholder="Senha"
                                                 onChange={(e) => setSenha(e.target.value)}
@@ -149,7 +149,7 @@ const Login = () => {
                                         </C.Wrapper>
                                     </div>
                                     <div className="d-flex justify-content-center">
-                                        <a href="#" className="forgot">Esqueceu sua senha?</a>   
+                                        <button type="button" className={`botao ${inputType === 'password' ? 'c' : ''}`} onClick={handleInputType}><i className={`bi bi-eye-${inputType === 'password' ? 'slash-fill' : 'fill'}`} ></i>{inputType === 'password' ? ' Exibir ' : ' Ocultar '}senha</button>
                                     </div>
                                     <div className="d-flex justify-content-center my-3">
                                         <C.Submit type="submit">

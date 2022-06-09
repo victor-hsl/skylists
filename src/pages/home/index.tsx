@@ -39,7 +39,7 @@ const Home = () => {
 
     return(
         <Container className="px-2">
-            <CardBlur classe="container mt-2 p-4">
+            <CardBlur classe="container mt-2 py-4 px-2 px-sm-3 px-md-4">
                 <Nav checked="h" add />
                 <hr/>
                 <Grid>

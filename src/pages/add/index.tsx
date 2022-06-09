@@ -157,15 +157,15 @@ const Add = () => {
                     </label>
                     <div className="my-2">
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="public" value="public" onChange={(e) => setPrivacidade(e)} defaultChecked/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="public" value="public" onChange={(e) => setPrivacidade(e)} checked={newList?.privacidade === 'public'}/>
                             <label className="form-check-label" htmlFor="public">Publica <i className="bi bi-unlock"></i></label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="private" value="private" onChange={(e) => setPrivacidade(e)}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="private" value="private" onChange={(e) => setPrivacidade(e)} checked={newList?.privacidade === 'private'} />
                             <label className="form-check-label" htmlFor="private">Privada <i className="bi bi-lock"></i></label>
                         </div>
                         <div className="form-check form-check-inline">
-                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="block" value="block" onChange={(e) => setPrivacidade(e)}/>
+                            <input className="form-check-input" type="radio" name="inlineRadioOptions" id="block" value="block" onChange={(e) => setPrivacidade(e)} checked={newList?.privacidade === 'block'} />
                             <label className="form-check-label" htmlFor="block">Bloqueada <i className="bi bi-key"></i></label>
                         </div>
                     </div>
