@@ -65,7 +65,7 @@ const List = () => {
         }
         if(owner && list){
             getList(owner, list);
-            setListLink('http://localhost:3000/list/'+owner+'/'+list);
+            setListLink('https://skylists.vercel.app/list/'+owner+'/'+list);
         }
     }, []);
 
@@ -255,16 +255,18 @@ const List = () => {
                     </div>
                     {showCopy &&
                         <Alert variant='primary' onClose={() => {setShowCopy(false);setCopyIcon('clipboard')}} dismissible className="mt-3">
-                            {lista?.privacidade === 'private' &&
-                                <i className='bi bi-lock copy me-2'/>
-                            }
-                            {lista?.privacidade === 'public' &&
-                                <i className='bi bi-unlock copy me-2'/>
-                            }
-                            {lista?.privacidade === 'block' &&
-                                <i className='bi bi-key copy me-2'/>
-                            }
-                            <Alert.Link href={listLink}>{listLink}</Alert.Link><i onClick={() => {navigator.clipboard.writeText(listLink);setCopyIcon('clipboard-check')}} className={`bi bi-${copyIcon} copy ms-3`}></i>
+                            <div className='d-flex justify-content-center'>    
+                                {lista?.privacidade === 'private' &&
+                                    <i className='bi bi-lock copy me-2'/>
+                                }
+                                {lista?.privacidade === 'public' &&
+                                    <i className='bi bi-unlock copy me-2'/>
+                                }
+                                {lista?.privacidade === 'block' &&
+                                    <i className='bi bi-key copy me-2'/>
+                                }
+                                <Alert.Link href={listLink}>{listLink}</Alert.Link><i onClick={() => {navigator.clipboard.writeText(listLink);setCopyIcon('clipboard-check')}} className={`bi bi-${copyIcon} copy ms-3`}></i>
+                            </div>
                         </Alert>
                     }
                 </Area>              
