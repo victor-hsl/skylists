@@ -49,6 +49,19 @@ export const Container = styled.div`
         border: 0px;
         color: ${props => props.theme.text};
     }
+
+    .accordion-item {
+        background: ${props => props.theme.hoverBackground};
+    }
+
+    .accordion-button {
+        background: ${props => props.theme.secondaryBackground};
+        color: ${props => props.theme.text};
+    }
+
+    ol > li {
+        margin-bottom: 8px;
+    }
 `;
 
 export const Wrapper = styled.div`

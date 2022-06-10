@@ -1,14 +1,14 @@
 import { auth } from "../../util/FirebaseConnection";
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { onAuthStateChanged, reauthenticateWithCredential, User } from "firebase/auth";
 import CardBlur from "../../components/cardBlur";
 import { Alert } from 'react-bootstrap';
 import Nav from "../../template/nav";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import {Container, Wrapper} from './styles'
-import { updatePassword } from "firebase/auth";
+import {deleteUser, onAuthStateChanged, User } from "firebase/auth";
+import { Accordion } from "react-bootstrap";
 const Profile = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User>();
@@ -38,108 +38,79 @@ const Profile = () => {
         }
     }
 
-    const modifyPassword = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        
-        if(pass1 === pass2){
-            setNewPassword(pass1);
-            if(user){
-                updatePassword(user, newPassword).then(() => {
-                    alert('alterado com sucesso');
-                }).catch((e) => {
-                    alert('Erro: '+e.code);
-                });
-            }
-        } else {
-            setEnd('danger');
-            setMessage('Senhas não coincidem!');
-            setShow(true);
-        }
-    }
-
     return(
         <Container className="px-2">
             <CardBlur classe="container mt-2 py-4 px-2 px-sm-3 px-md-4">
                 <Nav checked="p" add />
                 <hr/>
-                <Tabs defaultActiveKey="senha" id="uncontrolled-tab-example" className="aba">
-                    <Tab eventKey="senha" title="Alterar Senha" className="abas pt-4 pb-2 px-2 px-sm-3 px-md-4">
-                        <div className="d-flex justify-content-center">
-                            <strong className="me-1">Usuário</strong>- {user?.email}
-                        </div>
-                        <div className="d-flex justify-content-center mb-3">
-                            <form onSubmit={modifyPassword}>
-                                <div className="d-flex justify-content-center">
-                                    <Wrapper>
-                                        <input 
-                                            id="currentPassword"
-                                            type="password"
-                                            spellCheck={false} 
-                                            placeholder="Senha atual"
-                                            onChange={(e) => setCurrentPassword(e.target.value)}
-                                            required
-                                        />
-                                        <div className="underline"/>
-                                        <span className="icon">
-                                            <i className="bi bi-key"></i>
-                                        </span>
-                                    </Wrapper>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <Wrapper>
-                                        <input 
-                                            id="pass1"
-                                            type={inputType}
-                                            spellCheck={false} 
-                                            placeholder="Nova senha"
-                                            onChange={(e) => setPass1(e.target.value)}
-                                            required
-                                        />
-                                        <div className="underline"/>
-                                        <span className="icon">
-                                            <i className="bi bi-asterisk"></i>
-                                        </span>
-                                    </Wrapper>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <Wrapper>
-                                        <input 
-                                            id="pass2"
-                                            type={inputType}
-                                            spellCheck={false} 
-                                            placeholder="Repita a nova senha"
-                                            onChange={(e) => setPass2(e.target.value)}
-                                            required
-                                        />
-                                        <div className="underline"/>
-                                        <span className="icon">
-                                            <i className="bi bi-asterisk"></i>
-                                        </span>
-                                    </Wrapper>
-                                </div>
-                                <div className="d-flex justify-content-center">
-                                    <button type="button" className={`botao ${inputType === 'password' ? 'c' : ''}`} onClick={handleInputType}><i className={`bi bi-eye-${inputType === 'password' ? 'slash-fill' : 'fill'}`} ></i>{inputType === 'password' ? ' Exibir ' : ' Ocultar '}senha</button>
-                                </div>
-                                <div className="input-group justify-content-center mt-3">
-                                    <button type="submit" className='btn grupo' ><i className="bi bi-tools me-1"></i>Alterar</button>
-                                    <button type="reset" className='btn grupo' ><i className="bi bi-eraser me-1"></i>Limpar</button>
-                                </div>    
-                            </form>
-                        </div>
-                        {show &&
-                            <Alert variant={end} onClose={() => setShow(false)} dismissible>
-                                {message}
-                            </Alert>
-                        }
-                    </Tab>
-                    <Tab eventKey="excluir" title="Excluir Perfil" className="abas py-4 px-2 px-sm-3 px-md-4">
-                        <div>
-                            <div className="d-flex justify-content-center">Deseja realmente excluir seu perfil?</div>
-                            <div className="d-flex justify-content-center text-muted">Esta ação removerá permanentemente seus dados</div>
-                            <div className="d-flex justify-content-center mt-3">
-                                <button className="btn btn-danger"><i className="bi bi-trash3"></i> Excluir</button>
-                            </div>
-                        </div>
+                <Tabs defaultActiveKey="info" id="uncontrolled-tab-example" className="aba">
+                    <Tab eventKey="info" title="Informações" className="abas py-4 px-2 px-sm-3 px-md-4">
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                <Accordion.Header>Usuário</Accordion.Header>
+                                <Accordion.Body>
+                                    <ul>
+                                        <li>
+                                            <h4>Criação de novo usuário</h4>
+                                            <ol type="1">
+                                                <li>Faça logout clicando no botão <strong><i className="bi bi-power"/> Sair</strong> localizado na parte superior esquerda do aplicativo.</li>
+                                                <li>Na tela de login, clique em <strong>Cadastro</strong> para exibir o formulário de registro.</li>
+                                                <li>Informe o e-mail do novo usuário, o app não aceitará e-mails sem <strong>@</strong> e <strong>.com</strong></li>
+                                                <li>Em seguida informe a senha, somente senhas com mais de <strong>6 caracteres</strong> serão aceitas.</li>
+                                                <li>Confirme a senha e clique no botão para finalizar o cadastro.</li>
+                                                <li>Após o cadastro o usuário recebe uma lista vazia.</li>
+                                            </ol>
+                                        </li>
+                                        <li>
+                                            <h4>Exclusão de usuário</h4>
+                                            <ol type="1">
+                                                <li>Com o usuário que será excluido logado, clique no menu no icone <i className="bi bi-person"/></li>
+                                                <li>Em seguida clique na aba excluir perfil e confirme a exclusão.</li>
+                                                <li>Os dados do usuário serão excluidos do sistema permanentemente.</li>
+                                                <li>Caso haja algum problema ao excluir, entre em contato com o suporte via e-mail: victor.s.lima@ufms.br</li>
+                                            </ol>
+                                        </li>
+                                        <li>                                        
+                                            <h4>Dados do usuário</h4>
+                                            <p className="ms-3">O código identificador de usuário é criptografado pela API do google, dessa forma apenas o próprio aplicativo é capaz de descriptografar e reconhecer um usuário</p>
+                                            <p className="ms-3">Da mesma forma o código de identificação das listas é criptografado, para garantir a segurança dos dados inseridos na mesma.</p>
+                                        </li>
+                                    </ul>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                            <Accordion.Item eventKey="1">
+                                <Accordion.Header>Listas</Accordion.Header>
+                                <Accordion.Body>
+                                    <ul>
+                                        <li>
+                                            <h4>Adicionar lista</h4>
+                                            <ol type="1">
+                                                <li>No menu de navegação, clique em <i className="bi bi-clipboard-plus"/> para incluir uma nova lista.</li>
+                                                <li>Selecione o icone que deseja aplicar a lista.</li>
+                                                <li>Informe um nome para a lista.</li>
+                                                <li>Tanto o icone quanto o nome da lista podem ser editados futuramente.</li>
+                                                <li>Escolha a privacidade da lista, clicando no icone <i className="bi bi-question-circle"/> é exibido a descrição de cada tipo de privacidade.</li>
+                                            </ol>
+                                        </li>
+                                        <li>
+                                            <h4>Editar lista</h4>
+                                            <ol type="1">
+                                                <li>Salvar alterações - Para salvar e continuar editando a lista clique no botão <i className="bi bi-save"/>, ao clicar no botao voltar <i className="bi bi-clipboard-x"/> a lista será salva antes de retornar a home page.</li>
+                                                <li>Alterar nome - Basta clicar no nome da lista, será exibida uma caixa de edição, após isso clique em salvar no menu inferior.</li>
+                                                <li>Alterar icone - Clique no icone atual, será exibida a lista de icones, escolha o icone desejado e clique em salvar no menu inferior.</li>
+                                            </ol>
+                                        </li>
+                                        <li>
+                                            <h4>Excluir lista</h4>
+                                            <ol type="1">
+                                                <li>No menu inferior da exibição de lista, basta clicar no botão <i className="bi bi-trash3"/>.</li>
+                                                <li>A lista e todos os dados contidos nela serão excluidos permanentemente do sistema.</li>
+                                            </ol>
+                                        </li>
+                                    </ul>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
                     </Tab>
                     <Tab eventKey="sobre" title="Sobre o App" className="abas py-4 px-2 px-sm-3 px-md-4">
                         <div>
@@ -193,6 +164,15 @@ const Profile = () => {
                             </div>                            
                             <h4><strong>Versão</strong><i className="bi bi-info-circle ms-2"/></h4>
                             <p className="ms-2">1.0.0</p>
+                        </div>
+                    </Tab>
+                    <Tab eventKey="excluir" title="Excluir Perfil" className="abas py-4 px-2 px-sm-3 px-md-4">
+                        <div>
+                            <div className="d-flex justify-content-center">Deseja realmente excluir seu perfil?</div>
+                            <div className="d-flex justify-content-center text-muted">Esta ação removerá permanentemente seus dados</div>
+                            <div className="d-flex justify-content-center mt-3">
+                                <button className="btn btn-danger"><i className="bi bi-trash3"></i> Excluir</button>
+                            </div>
                         </div>
                     </Tab>
                 </Tabs>
