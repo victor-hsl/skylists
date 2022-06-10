@@ -50,6 +50,7 @@ export const Area = styled.div`
         cursor: pointer;
         font-size: 20px;
     }
+
 `;
 
 export const Back = styled.button`
