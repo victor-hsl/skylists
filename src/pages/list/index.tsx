@@ -256,16 +256,16 @@ const List = () => {
                     {showCopy &&
                         <Alert variant='primary' onClose={() => {setShowCopy(false);setCopyIcon('clipboard')}} dismissible className="mt-3">
                             <div className='d-flex align-items-center overflow-auto'>    
-                                <i onClick={() => {navigator.clipboard.writeText(listLink);setCopyIcon('clipboard-check')}} className={`bi bi-${copyIcon} copy ms-3`}></i>
+                                <i onClick={() => {navigator.clipboard.writeText(listLink);setCopyIcon('clipboard-check')}} className={`bi bi-${copyIcon} copy me-3`}></i>
                                 <Alert.Link href={listLink} className="listlink">{listLink}</Alert.Link>
                                 {lista?.privacidade === 'private' &&
-                                    <i className='bi bi-lock copy me-2'/>
+                                    <i className='bi bi-lock copy ms-2'/>
                                 }
                                 {lista?.privacidade === 'public' &&
-                                    <i className='bi bi-unlock copy me-2'/>
+                                    <i className='bi bi-unlock copy ms-2'/>
                                 }
                                 {lista?.privacidade === 'block' &&
-                                    <i className='bi bi-key copy me-2'/>
+                                    <i className='bi bi-key copy ms-2'/>
                                 }
                             </div>
                         </Alert>
