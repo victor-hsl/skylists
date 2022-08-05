@@ -164,6 +164,12 @@ const Profile = () => {
                             </div>                            
                             <h4><strong>Versão</strong><i className="bi bi-info-circle ms-2"/></h4>
                             <p className="ms-2">1.0.0</p>
+                            <h4><strong>Designed by</strong></h4>
+                            <div className="ms-2 mb-2">
+                                <a href="https://dobraweb.com.br" target="_blank">
+                                    Dobra Web <img src="https://firebasestorage.googleapis.com/v0/b/portfolio-b03b9.appspot.com/o/dwhite.webp?alt=media&token=74ff2f96-55fe-424d-a4ee-ad25f89a910c" alt="DesignedBy" style={{width: '18px'}} />
+                                </a>
+                            </div>
                         </div>
                     </Tab>
                     <Tab eventKey="excluir" title="Excluir Perfil" className="abas py-4 px-2 px-sm-3 px-md-4">
